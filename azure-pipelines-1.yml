@@ -1,16 +1,13 @@
-
-
-
 trigger:
-- none
+- main
 
 pool:
-  name: newagentpool
-  demands:
-    - agent.name -equals nchallahagent
- 
+  vmImage: 'ubuntu-latest'
+
 variables:
   FLUTTER_HOME: /home/azureuser/myagent/sdk/flutter
+  ANDROID_HOME: /home/azureuser/myagent/sdk/android-sdk
+  PATH: $(PATH):$(FLUTTER_HOME)/bin:$(ANDROID_HOME)/cmdline-tools/latest/bin:$(ANDROID_HOME)/platform-tools
 
 jobs:
 - job: Build_and_Test
@@ -19,31 +16,21 @@ jobs:
   
   # Step 1: Install Flutter dependencies
   - script: |
-      export PATH="$PATH:$FLUTTER_HOME/bin"
       flutter doctor
       flutter pub get
     displayName: 'Install Flutter dependencies'
 
   # Step 2: Run Flutter unit tests
   - script: |
-      export PATH="$PATH:$FLUTTER_HOME/bin"
       flutter test
     displayName: 'Run Flutter tests'
 
   # Step 3: Build the Flutter app for Android
   - script: |
-      export PATH="$PATH:$FLUTTER_HOME/bin"
       flutter build apk --release
     displayName: 'Build Flutter Android APK'
 
-  # Step 4: (Optional) Build the Flutter app for iOS
-  # This step requires a MacOS agent, uncomment and configure if needed.
-  # - script: |
-  #     export PATH="$PATH:$FLUTTER_HOME/bin"
-  #     flutter build ios --release
-  #   displayName: 'Build Flutter iOS App'
-
-  # Step 5: Publish build artifacts (APK)
+  # Step 4: Publish build artifacts (APK)
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: 'build/app/outputs/flutter-apk/app-release.apk'
