@@ -9,7 +9,8 @@ pool:
 variables:
   FLUTTER_HOME: /home/azureuser/myagent/sdk/flutter
   ANDROID_HOME: /home/azureuser/myagent/sdk/android-sdk
-  PATH: $(PATH):$(FLUTTER_HOME)/bin:$(ANDROID_HOME)/cmdline-tools/latest/bin:$(ANDROID_HOME)/platform-tools
+  # Define the PATH explicitly to avoid cyclical reference issues
+  CUSTOM_PATH: /home/azureuser/myagent/sdk/flutter/bin:/home/azureuser/myagent/sdk/android-sdk/cmdline-tools/latest/bin:/home/azureuser/myagent/sdk/android-sdk/platform-tools:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
 jobs:
 - job: Build_and_Test
@@ -18,17 +19,20 @@ jobs:
   
   # Step 1: Install Flutter dependencies
   - script: |
+      export PATH=$(CUSTOM_PATH)
       flutter doctor
       flutter pub get
     displayName: 'Install Flutter dependencies'
 
   # Step 2: Run Flutter unit tests
   - script: |
+      export PATH=$(CUSTOM_PATH)
       flutter test
     displayName: 'Run Flutter tests'
 
   # Step 3: Build the Flutter app for Android
   - script: |
+      export PATH=$(CUSTOM_PATH)
       flutter build apk --release
     displayName: 'Build Flutter Android APK'
 
