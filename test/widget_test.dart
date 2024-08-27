@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pages/main.dart'; // Ensure this import matches your project structure
+import 'package:travel_app/main.dart';
+import 'package:travel_app/pages/welcome_page.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('WelcomePage initial state and interactions', (WidgetTester tester) async {
     // Build the widget
     await tester.pumpWidget(MyApp());
 
-    // Verify that the counter starts at 0
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify initial state
+    expect(find.text('Welcome to the App'), findsOneWidget); // Example text
+    expect(find.byIcon(Icons.home), findsOneWidget); // Example icon
 
-    // Tap the '+' icon and trigger a frame
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // If there are buttons or other interactive widgets
+    // Example: Check if a button exists and can be tapped
+    final Finder buttonFinder = find.byType(ElevatedButton); // Example button type
+    expect(buttonFinder, findsOneWidget);
 
-    // Verify that the counter has incremented
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap the button and verify state change
+    await tester.tap(buttonFinder);
+    await tester.pump(); // Rebuild the widget after the tap
+
+    // Check expected outcome after interaction
+    expect(find.text('Next Page'), findsOneWidget); // Example outcome
   });
 }
