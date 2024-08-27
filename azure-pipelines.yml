@@ -2,9 +2,9 @@ trigger:
 - none
 
 pool:
-  name: agentpoolnew
+  name: newagentpool
   demands:
-    - agent.name -equals agentl
+    - agent.name -equals nchallahagent
  
 
 steps:
