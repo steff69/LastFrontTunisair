@@ -2,7 +2,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: newagentpool
+  demands:
+    - agent.name -equals nchallahagent
 
 variables:
   FLUTTER_HOME: /home/azureuser/myagent/sdk/flutter
