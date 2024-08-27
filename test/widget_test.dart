@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_app/main.dart'; // Ensure this import matches your project structure
+import 'package:pages/main.dart'; // Ensure this import matches your project structure
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -16,6 +16,7 @@ void main() {
     await tester.pump();
 
     // Verify that the counter has incremented
-
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
   });
 }
