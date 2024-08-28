@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tunisair_master/constants/constants.dart'; 
-import 'package:tunisair_master/pages/MainScreen.dart';
-import 'package:tunisair_master/pages/welcome_page.dart';
+import 'package:tunisair_master/lib/pages/MainScreen.dart';
+import 'package:tunisair_master/lib/pages/welcome_page.dart.dart';
 
 void main() {
   runApp(const MyApp());
