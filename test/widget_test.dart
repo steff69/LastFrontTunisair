@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tunisair_master/lib/main.dart';  // Corrected import for main.dart
+import 'package:tunisair_master/main.dart';  // Corrected import for main.dart
 import 'package:tunisair_master/test/widget_test.dart';  // Correc
 
 void main() {
