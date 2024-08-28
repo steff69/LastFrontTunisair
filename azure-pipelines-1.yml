@@ -17,24 +17,26 @@ jobs:
   displayName: 'Build and Test Flutter App'
   steps:
   
-  # Step 1: Install Flutter dependencies
+  # Step 1: check Flutter dependencies
   - script: |
       export PATH=$(CUSTOM_PATH)
       flutter doctor
       flutter pub get
     displayName: 'Install Flutter dependencies'
 
+  # Step 3: Build the Flutter app for Android
+  - script: |
+      export PATH=$(CUSTOM_PATH)
+      flutter build apk --release
+    displayName: 'Build Flutter Android APK'
+    
   # Step 2: Run Flutter unit tests
   - script: |
       export PATH=$(CUSTOM_PATH)
       flutter test
     displayName: 'Run Flutter tests'
 
-  # Step 3: Build the Flutter app for Android
-  - script: |
-      export PATH=$(CUSTOM_PATH)
-      flutter build apk --release
-    displayName: 'Build Flutter Android APK'
+
 
   # Step 4: Publish build artifacts (APK)
   - task: PublishBuildArtifacts@1
