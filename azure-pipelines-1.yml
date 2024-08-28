@@ -33,11 +33,10 @@ jobs:
       flutter build apk --release
     displayName: 'Build Flutter Android APK'
     
-  # Step 2: Run Flutter unit tests
-  - script: |
-     
-      flutter test
-    displayName: 'Run Flutter tests'
+  - task: FlutterTest@0
+    inputs:
+     projectDirectory: './'
+    displayName: 'Build Flutter Android APK'
 
 
 
