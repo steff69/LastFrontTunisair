@@ -1,26 +1,29 @@
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility in the flutter_test package. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tunisair_master/main.dart';  // Correct import for main.dart
-import 'package:tunisair_master/pages/welcome_page.dart';  // Correct import for welcome_page.dart
+import 'package:travel_app/main.dart';
 
 void main() {
-  testWidgets('WelcomePage initial state and interactions', (WidgetTester tester) async {
-    // Build the MyApp widget
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify initial state
-    expect(find.text('Welcome to the App'), findsOneWidget); // Verify the initial text is present
-    expect(find.byIcon(Icons.home), findsOneWidget); // Verify the home icon is present
+    // Verify that our counter starts at 0.
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
 
-    // Check if the button exists and can be tapped
-    final Finder buttonFinder = find.byType(ElevatedButton); // Find the button
-    expect(buttonFinder, findsOneWidget); // Ensure the button is found
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
 
-    // Tap the button and trigger a state change
-    await tester.tap(buttonFinder);
-    await tester.pump(); // Rebuild the widget after the tap
-
-    // Check the expected outcome after interaction
-    expect(find.text('Next Page'), findsOneWidget); // Verify that the "Next Page" text appears
+    // Verify that our counter has incremented.
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
   });
 }
