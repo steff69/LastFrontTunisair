@@ -36,7 +36,7 @@ jobs:
   - task: FlutterTest@0
     inputs:
      projectDirectory: './'
-    displayName: 'Build Flutter Android APK'
+    displayName: 'test'
 
 
 
