@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lib/main.dart';  // Import the main application
-import 'package:lib/pages/welcome_page.dart.dart';  // Import the WelcomePage directly if needed
+import 'package:tunisair_master/lib/main.dart';  // Import the main application
+import 'package:tunisair_master/lib/pages/welcome_page.dart.dart';  // Import the WelcomePage directly if needed
 
 void main() {
   testWidgets('WelcomePage initial state and interactions', (WidgetTester tester) async {
