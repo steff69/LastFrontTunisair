@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tunisair_master/main.dart';  // Corrected import for main.dart
-import 'package:tunisair_master/test/widget_test.dart';  // Correc
+import 'package:tunisair_master/main.dart';  // Correct import for main.dart
+import 'package:tunisair_master/pages/welcome_page.dart';  // Correct import for welcome_page.dart
 
 void main() {
   testWidgets('WelcomePage initial state and interactions', (WidgetTester tester) async {
-    // Build the widget
-    await tester.pumpWidget(MyApp());
+    // Build the MyApp widget
+    await tester.pumpWidget(const MyApp());
 
     // Verify initial state
-    expect(find.text('Welcome to the App'), findsOneWidget); // Example text
-    expect(find.byIcon(Icons.home), findsOneWidget); // Example icon
+    expect(find.text('Welcome to the App'), findsOneWidget); // Verify the initial text is present
+    expect(find.byIcon(Icons.home), findsOneWidget); // Verify the home icon is present
 
-    // If there are buttons or other interactive widgets
-    // Example: Check if a button exists and can be tapped
-    final Finder buttonFinder = find.byType(ElevatedButton); // Example button type
-    expect(buttonFinder, findsOneWidget);
+    // Check if the button exists and can be tapped
+    final Finder buttonFinder = find.byType(ElevatedButton); // Find the button
+    expect(buttonFinder, findsOneWidget); // Ensure the button is found
 
-    // Tap the button and verify state change
+    // Tap the button and trigger a state change
     await tester.tap(buttonFinder);
     await tester.pump(); // Rebuild the widget after the tap
 
-    // Check expected outcome after interaction
-    expect(find.text('Next Page'), findsOneWidget); // Example outcome
+    // Check the expected outcome after interaction
+    expect(find.text('Next Page'), findsOneWidget); // Verify that the "Next Page" text appears
   });
 }
