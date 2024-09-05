@@ -33,7 +33,7 @@ jobs:
       flutter build apk --release
     displayName: 'Build Flutter Android APK'
     
-  - task: FlutterTest@0
+  - task: FlutterTest@0 
     inputs:
      projectDirectory: './'
     displayName: 'test'
